@@ -1,0 +1,15 @@
+#
+# Copyright 2023 isobar. All Rights Reserved.
+#
+# The isobar python image
+#
+# Usage:
+#       dk build -t isobar/app:1.0.0 -f Dockerfile .
+#
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.10
+LABEL maintainer "jacky.huang@isobar.com"
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
