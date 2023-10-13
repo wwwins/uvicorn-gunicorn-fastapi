@@ -36,6 +36,7 @@ async def predict(file: UploadFile = File(...)):
         return {"message": "unsupported file type"}
     if img.format not in ["JPEG", "PNG"]:
         return {"message": "unsupported file type"}
+    img.thumbnail((512,512))
     res = pipe(img)
     #res = {"message": "success"}
     return res
