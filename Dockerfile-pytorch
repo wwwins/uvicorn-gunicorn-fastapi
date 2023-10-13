@@ -6,7 +6,7 @@
 # Usage:
 #       dk build -t isobar/app:1.0.0 -f Dockerfile .
 #
-FROM isobar/fastapi:1.0.0
+FROM isobar/fastapi:1.1.0
 LABEL maintainer "jacky.huang@isobar.com"
 
 WORKDIR /app
