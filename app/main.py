@@ -1,4 +1,5 @@
 from fastapi import FastAPI, File, Form, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from typing import Annotated
 
@@ -20,6 +21,22 @@ dictConfig(log_conf)
 version = f"{sys.version_info.major}.{sys.version_info.minor}"
 logger = logging.getLogger(__name__)
 app = FastAPI(redoc_url=None, title="app-name", version="1.0.0")
+
+origins = [
+        "http://xxx.abc.com",
+        "http://ooo.abc.com",
+        "http://localhost",
+        "http://localhost:8080",
+        "http://localhost:8888"
+        ]
+app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+        )
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 pipe = pipeline("image-classification", model="./model")
